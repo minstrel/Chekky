@@ -13,4 +13,5 @@
  *= require_tree .
  *= require_self
  *= require semantic_ui/semantic_ui
+ *= require checklists
  */

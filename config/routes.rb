@@ -1,9 +1,18 @@
 Rails.application.routes.draw do
+  get 'checklists/index'
+
+  get 'checklists/purge' => 'checklists#purge'
+  get 'checklists/not_completed' => 'checklists#not_completed'
+  get 'checklists/completed' => 'checklists#completed'
+  get 'checklists/search' => 'checklists#search'
+  get 'checklists/search_results' => 'checklists#search_results'
+
+  resources :checklists
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'checklists#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

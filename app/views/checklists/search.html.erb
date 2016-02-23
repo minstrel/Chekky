@@ -1,0 +1,43 @@
+<%= form_tag(checklists_search_results_path, method: :get, remote: true, id: 'search_form') do %>
+  <div class="ui form">
+    <div class="fields">
+      <div class="one wide field">
+      </div>
+      <div class="two wide field">
+        <label>Book</label>
+        <div class="ui small input">
+          <%= text_field_tag( :book, "", :placeholder => "Book #" ) %>
+        </div>
+      </div>
+      <div class="two wide field">
+        <label>Page</label>
+        <div class="ui small input">
+          <%= text_field_tag( :page, "", :placeholder => "Page #" ) %>
+        </div>
+      </div>
+      <div class="two wide field">
+        <label>&nbsp;</label>
+        <%= submit_tag( "Search", { :class => "ui violet compact button"  } ) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+  <br />
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="ui one wide column">Complete</div>
+      <div class="ui two wide column">Book</div>
+      <div class="ui two wide column">Page</div>
+      <div class="ui five wide column">Notes</div>
+      <div class="ui two wide column">Date</div>
+    </div>
+    <div class="ui divider"></div>
+  </div>
+  <div class="ui grid" id="search_results">
+  </div>
+
+<script type="text/javascript">
+$('form#search_form').on('ajax:success', function(e, data, status, xhr) {
+  $('div#search_results').html(xhr.responseText);
+});
+</script>

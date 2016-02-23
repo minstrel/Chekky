@@ -1,0 +1,30 @@
+<% @checklist_items.each do |item| %>
+  <div class="row" data-itemid="<%= item.id.to_s %>">
+    <div class="one wide column">
+      <i class="ui large <%= @checkmark_color %> checkmark box link icon" data-itemid="<%= item.id.to_s %>"></i>
+    </div>
+    <div class="two wide column">
+      <%= item.book %>
+    </div>
+    <div class="two wide column">
+      <%= item.page %>
+    </div>
+    <div class="five wide column">
+      <%= item.note %>
+    </div>
+    <div class="column">
+      <%= form_for item, remote: true do |f| %>
+        <%= f.submit "Submit test", :style => "display: none;" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $('.checkmark.box.icon').click(function() {
+    // Submit the form corresponding to the checklist's data-itemid attribute
+    $('form#edit_checklist_' + $(this).attr('data-itemid')).submit();
+    // Handle removing the row in the .js callback from the update method
+  });
+</script>
+
