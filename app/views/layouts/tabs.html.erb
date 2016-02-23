@@ -10,12 +10,6 @@
         Refresh
       </div>
     </div>
-    <div class="ui four wide column">
-      <div class="ui labeled blue compact icon button" id="clear">
-        <i class="lightning icon"></i>
-        Delete completed
-      </div>
-    </div>
   </div>
 
   <%= yield %>
@@ -26,8 +20,5 @@
 $('div #refresh').click(function() {
   // --debug-- console.log("click triggered");
   $('.tabular.menu .item').tab('change tab', '<%= @refresh_tab %>');
-});
-$('div #clear').click(function() {
-  $('.ui.small.modal#confirm_delete').modal('show');
 });
 </script>

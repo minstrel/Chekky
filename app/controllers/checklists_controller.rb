@@ -12,7 +12,7 @@ class ChecklistsController < ApplicationController
   end
 
   def completed
-    @checklist_items = Checklist.where(complete: true)
+    @checklist_items = Checklist.where(complete: true).limit(50).order('created_at desc')
     @checkmark_color = "green"
     @refresh_tab = "completed"
     render :edit, layout: "tabs"
