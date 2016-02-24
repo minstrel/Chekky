@@ -47,16 +47,11 @@ class ChecklistsController < ApplicationController
     end
   end
 
-  def purge
-    Checklist.where(complete: true).delete_all
-    render nothing: true
-  end
-
   def update
     @checklist_item = Checklist.find(params[:id])
-    @checklist_item.toggle :complete
+    # @checklist_item.toggle :complete
     respond_to do |format|
-      if @checklist_item.save
+      if @checklist_item.update(post_params)
         format.js
       end
     end

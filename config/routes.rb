@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   get 'checklists/index'
 
-  get 'checklists/purge' => 'checklists#purge'
   get 'checklists/not_completed' => 'checklists#not_completed'
   get 'checklists/completed' => 'checklists#completed'
   get 'checklists/search' => 'checklists#search'

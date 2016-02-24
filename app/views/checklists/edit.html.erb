@@ -14,6 +14,7 @@
     </div>
     <div class="column">
       <%= form_for item, remote: true do |f| %>
+        <%= f.check_box :complete, :style => "display: none;", data: { checkboxid: item.id.to_s } %>
         <%= f.submit "Submit test", :style => "display: none;" %>
       <% end %>
     </div>
@@ -22,6 +23,8 @@
 
 <script type="text/javascript">
   $('.checkmark.box.icon').click(function() {
+    // Toggle the complete status of the item
+    $('input[data-checkboxid=' + $(this).attr('data-itemid') + ']').click();
     // Submit the form corresponding to the checklist's data-itemid attribute
     $('form#edit_checklist_' + $(this).attr('data-itemid')).submit();
     // Handle removing the row in the .js callback from the update method
