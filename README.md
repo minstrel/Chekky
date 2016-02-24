@@ -25,8 +25,8 @@ config/database.yml.
 
 4. Create your application container, replacing "my-\*" with your naming
 conventions:
-    docker build -t my-repository/my-app-image:my-version .
+       docker build -t my-repository/my-app-image:my-version .
 
 5. Run the container, linking it to the database:
-    docker run -d --name my-app-container --link
-    checklist_database:checklist_datbase -P my-repository/my-app-image:my-version
+       docker run -d --name my-app-container --link
+       checklist_database:checklist_datbase -P my-repository/my-app-image:my-version
