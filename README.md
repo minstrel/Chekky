@@ -16,19 +16,19 @@ views/layout) and controller and replacing as needed.
 ## Get it Running with Docker
 (Assumes you have docker running and familiar with running containers)
 
-1. Clone the repo.
+1.  Clone the repo.
 
-2. Modify the database.sh file and add you database password.  Do the same for
+2.  Modify the database.sh file and add you database password.  Do the same for
 config/database.yml.
 
-3. Run database.sh to create the database container.
+3.  Run database.sh to create the database container.
 
-4. Create your application container, replacing "my-\*" with your naming
+4.  Create your application container, replacing "my-\*" with your naming
 conventions:
 
-       docker build -t my-repository/my-app-image:my-version .
+        docker build -t my-repository/my-app-image:my-version .
 
-5. Run the container, linking it to the database:
+5.  Run the container, linking it to the database:
 
-       docker run -d --name my-app-container --link
-       checklist_database:checklist_datbase -P my-repository/my-app-image:my-version
+        docker run -d --name my-app-container --link
+        checklist_database:checklist_datbase -P my-repository/my-app-image:my-version
