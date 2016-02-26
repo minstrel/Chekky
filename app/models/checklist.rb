@@ -6,4 +6,11 @@ class Checklist < ActiveRecord::Base
       "grey"
     end
   end
+  def vickie_checkcolor
+    if self.vickie == true
+      "green"
+    else
+      "grey"
+    end
+  end
 end

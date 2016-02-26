@@ -1,11 +1,4 @@
 $(document).on('ready page:load', function (){
-  // $('input[type="checkbox"]').change(function() {
-  //   // console.log($(this).parents(["form"]));
-  //   console.log("checkbox changed");
-  // });
-  // $("#Test").click(function() {
-  //   console.log("Test clicked!");
-  // });
   $('.tabular.menu .item')
     .tab({
       context: 'parent',

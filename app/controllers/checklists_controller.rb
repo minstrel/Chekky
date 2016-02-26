@@ -49,7 +49,19 @@ class ChecklistsController < ApplicationController
 
   def update
     @checklist_item = Checklist.find(params[:id])
-    # @checklist_item.toggle :complete
+    # Are we changing the completed state or something else?
+    @complete_changed = false
+    @post_complete = case post_params["complete"]
+                     when "0"
+                       false
+                     else
+                       true
+                     end
+    if @post_complete == @checklist_item.complete
+      @complete_changed = false
+    else
+      @complete_changed = true
+    end 
     respond_to do |format|
       if @checklist_item.update(post_params)
         format.js
@@ -62,6 +74,6 @@ class ChecklistsController < ApplicationController
     params.permit(:book, :page)
   end
   def post_params
-    params.require(:checklist).permit(:book, :page, :note, :complete)
+    params.require(:checklist).permit(:book, :page, :note, :vickie, :complete)
   end
 end

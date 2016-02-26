@@ -1,7 +1,7 @@
 <% @checklist_items.each do |item| %>
   <div class="row" data-itemid="<%= item.id.to_s %>">
     <div class="one wide column">
-      <i class="large <%= @checkmark_color %> link icon" data-itemid="<%= item.id.to_s %>"></i>
+      <i class="complete large <%= item.checkcolor %> link icon" data-itemid="<%= item.id.to_s %>"></i>
     </div>
     <div class="two wide column">
       <%= item.book %>
@@ -12,9 +12,13 @@
     <div class="five wide column">
       <%= item.note %>
     </div>
+    <div class="two wide column">
+      <i class="vickie large <%= item.vickie_checkcolor %> link icon" data-itemid="<%= item.id.to_s %>"></i>
+    </div>
     <div class="column">
       <%= form_for item, remote: true do |f| %>
         <%= f.check_box :complete, :style => "display: none;", data: { checkboxid: item.id.to_s } %>
+        <%= f.check_box :vickie, :style => "display: none;", data: { vickieid: item.id.to_s } %>
         <%= f.submit "Submit test", :style => "display: none;" %>
       <% end %>
     </div>
@@ -22,7 +26,7 @@
 <% end %>
 
 <script type="text/javascript">
-  $('i.large.link.icon').click(function() {
+  $('i.complete').click(function() {
     // Get the item's id number from the data-itemid attribute
     var id = $(this).attr('data-itemid');
     // Toggle the complete status of the item
@@ -30,6 +34,14 @@
     // Submit the form corresponding to the checklist's data-itemid attribute
     $('form#edit_checklist_' + id).submit();
     // Handle removing the row in the .js callback from the update method
+  });
+  $('i.vickie').click(function() {
+    // Get the item's id number from the data-itemid attribute
+    var id = $(this).attr('data-itemid');
+    // Toggle the vickie status of the item
+    $('input[data-vickieid=' + id + ']').click();
+    // Submit the form corresponding to the checklist's data-itemid attribute
+    $('form#edit_checklist_' + id).submit();
   });
 </script>
 
