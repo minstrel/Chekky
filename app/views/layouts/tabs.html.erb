@@ -1,11 +1,11 @@
-<div class="ui grid">
-  <div class="ui row" id="to-do-contents">
-    <div class="ui one wide column"></div>
-    <div class="ui two wide column">Book</div>
-    <div class="ui two wide column">Page</div>
-    <div class="ui five wide column">Notes</div>
-    <div class="ui two wide column">Vickie</div>
-    <div class="ui two wide column">
+<div class="ui data_area grid">
+  <div class="row" id="to-do-contents">
+    <div class="one wide column"></div>
+    <div class="two wide column">Book</div>
+    <div class="two wide column">Page</div>
+    <div class="five wide column">Notes</div>
+    <div class="two wide column">Vickie</div>
+    <div class="two wide column">
       <div class="ui labeled red compact icon button" id="refresh">
         <i class="refresh icon"></i>
         Refresh
@@ -21,5 +21,9 @@
 $('div #refresh').click(function() {
   // --debug-- console.log("click triggered");
   $('.tabular.menu .item').tab('change tab', '<%= @refresh_tab %>');
+});
+$( 'div.data_area.grid' ).on( 'click', 'div.row', function() {
+  // Move the stuff from edit.html.erb to here
+  // debug test: console.log( $(this).text() );
 });
 </script>
