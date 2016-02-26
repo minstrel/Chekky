@@ -2,6 +2,47 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-i.link.icon:hover {
-  transform:scale(1.2,1.2);
+/* We insert two checkboxes, one empty and one with a check.  The checked
+one is hidden by setting max-width to 0 and overflow to hidden.  Then on
+hover it transitions in from left to right */
+
+i.large.grey.icon::before {
+  position: absolute;
+  content: '\f096';
+  opacity: 1;
+}
+i.large.grey.icon::after {
+  position: absolute;
+  content: '\f046';
+  color: purple;
+  opacity: .35;
+  max-width: 0;
+  overflow: hidden;
+  transition: all .35s;
+}
+i.large.grey.icon:hover::after {
+  opacity: 1;
+  max-width: 35px;
+}
+i.large.green.icon::before {
+  position: absolute;
+  content: '\f046';
+  opacity: 1;
+  transition: all .35s;
+}
+i.large.green.icon::after {
+  position: absolute;
+  content: '\f147';
+  color: purple;
+  opacity: .35;
+  max-width: 0;
+  overflow: hidden;
+  transition: all .35s;
+}
+i.large.green.icon:hover::before {
+  opacity: 0;
+}
+i.large.green.icon:hover::after {
+  opacity: 1;
+  max-width: 35px;
 }

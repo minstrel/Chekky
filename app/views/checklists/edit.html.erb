@@ -1,7 +1,7 @@
 <% @checklist_items.each do |item| %>
   <div class="row" data-itemid="<%= item.id.to_s %>">
     <div class="one wide column">
-      <i class="ui large <%= @checkmark_color %> checkmark box link icon" data-itemid="<%= item.id.to_s %>"></i>
+      <i class="large <%= @checkmark_color %> link icon" data-itemid="<%= item.id.to_s %>"></i>
     </div>
     <div class="two wide column">
       <%= item.book %>
@@ -22,11 +22,13 @@
 <% end %>
 
 <script type="text/javascript">
-  $('.checkmark.box.icon').click(function() {
+  $('i.large.link.icon').click(function() {
+    // Get the item's id number from the data-itemid attribute
+    var id = $(this).attr('data-itemid');
     // Toggle the complete status of the item
-    $('input[data-checkboxid=' + $(this).attr('data-itemid') + ']').click();
+    $('input[data-checkboxid=' + id + ']').click();
     // Submit the form corresponding to the checklist's data-itemid attribute
-    $('form#edit_checklist_' + $(this).attr('data-itemid')).submit();
+    $('form#edit_checklist_' + id).submit();
     // Handle removing the row in the .js callback from the update method
   });
 </script>
