@@ -1,9 +1,11 @@
 <% @results.each do |r| %>
   <div class="ui row">
-    <div class="ui one wide column"><i class="checkmark box <%= r.checkcolor %> icon"></i></div>
-    <div class="ui two wide column"><%= r.book %></div>
-    <div class="ui two wide column"><%= r.page %></div>
-    <div class="ui five wide column"><%= r.note %></div>
-    <div class="ui two wide column"><%= r.created_at.to_date %></div>
+    <div class="one wide column"><i class="search_res <%= r.checkcolor %> icon"></i></div>
+    <div class="two wide column"><%= r.book %></div>
+    <div class="two wide column"><%= r.page %></div>
+    <div class="five wide column"><%= r.note %></div>
+    <div class="two wide column"><i class="search_res <%= r.vickie_checkcolor %> icon"></i></div>
+    <div class="two wide column"><%= r.created_at.to_date %></div>
   </div>
 <% end %>
+

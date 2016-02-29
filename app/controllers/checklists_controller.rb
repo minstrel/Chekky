@@ -50,6 +50,7 @@ class ChecklistsController < ApplicationController
   def update
     @checklist_item = Checklist.find(params[:id])
     # Are we changing the completed state or something else?
+    # If completed state has changed, see callback for behavior.
     @complete_changed = false
     @post_complete = case post_params["complete"]
                      when "0"

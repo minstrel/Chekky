@@ -46,3 +46,14 @@ i.large.green.icon:hover::after {
   opacity: 1;
   max-width: 35px;
 }
+
+/* For search-results, format without hover behavior */
+
+i.search_res.grey.icon::before {
+  position: absolute;
+  content: '\f096';
+}
+i.search_res.green.icon::before {
+  position: absolute;
+  content: '\f046';
+}
