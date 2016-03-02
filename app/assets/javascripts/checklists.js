@@ -13,9 +13,6 @@ $(document).on('ready page:load', function (){
     })
   ;
   $('.tabular.menu .item').tab('change tab', 'not_completed');
-  // $( '.ui.tab.segment' ).on( 'click', 'div.row', function() {
-  // console.log($(this).text());
-  // });
   $( '.ui.tab.segment' ).on( 'click', 'i.complete', function() {
     // Get the item's id number from the data-itemid attribute
     var id = $(this).attr('data-itemid');
