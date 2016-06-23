@@ -1,0 +1,11 @@
+var targetrow = $(".row[data-itemid='<%= @checklist_item.id.to_s %>']")
+<% if @complete_changed %>
+  targetrow.slideUp ( function() {
+    $(this).remove()
+  });
+<% else %>
+  $.get("/checklists/" + <%= @checklist_item.id.to_s %> + "/edit", function (data) {
+    targetrow.replaceWith(data);
+  });
+<% end %>
+

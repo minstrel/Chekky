@@ -1,7 +1,7 @@
 # Chekky the Checklist
 
-A basic checklist app.  Not meant for groceries, but for work-related task
-lists that need to be archived and not deleted after they're created.
+A multi-field checklist app.  Not meant for groceries, but for task
+lists that contain values of specific fields.
 Items are added to the to-do list, checked off and moved to the completed list.
 The completed tab displays the most recent 50 by default and allows clicking
 the checkbox to put them back on to-do.

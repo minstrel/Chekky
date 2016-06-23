@@ -35,6 +35,8 @@ test
 test:all
 test:all:db
 test:db
+testing:first
+testing:second
 time:zones:all
 tmp:clear
 tmp:create

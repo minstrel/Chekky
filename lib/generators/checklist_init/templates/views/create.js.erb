@@ -1,0 +1,8 @@
+$.get("/checklists/" + <%= @checklist_item.id.to_s %> + "/edit", function(data) {
+  $("#to-do #to-do-contents").after(data);
+  $("#checklist_book").val("");
+  $("#checklist_page").val("");
+  $("#checklist_note").val("");
+  $("#checklist_book").focus();
+  }, 'html');
+

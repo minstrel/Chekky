@@ -1,0 +1,8 @@
+Description:
+    Checklist_init creates the checklist schema via interactive prompts.
+
+Example:
+    rails generate checklist_init Name
+
+    This will create:
+        what/will/it/create
