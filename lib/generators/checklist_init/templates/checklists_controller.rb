@@ -23,12 +23,31 @@ class ChecklistsController < ApplicationController
   end
 
   def search_results
-    @book = search_params[:book]
-    @page = search_params[:page]
-    @book = "%" if @book == ""
-    @page = "%" if @page == ""
-    @results = Checklist.where("book like ? AND page like ?", @book, @page) 
-    render layout: false
+    <%- # Define variable for each field flagged as searchable -%>
+    <%- searchfields = [] -%>
+    <%- @list.each do |list_item| -%>
+      <%- # For strings -%>
+      <%- if list_item[:type] = 1 and list_item[:searchable] == true -%>
+        <%- name = list_item[:name] -%>
+        @<%= name %> = search_params[:<%= name %>]
+        @<%= name %> = "%" if @<%= name %> == "" 
+        <%- searchfields << name -%>
+      <%- end -%>
+    <%- end -%>
+    <%- # Create the search query -%>
+    <%- search_query = searchfields.join(" like ? AND ") + " like ?" -%>
+    <%- search_query_fields = (searchfields.map { |field| "@#{field}" }).join(", ")-%>
+    @results = Checklist.where("<%= search_query %>", <%= search_query_fields %>)
+      render layout: false
+      <%- # Reference below from original implementation, if the output from above matches this, we're good -%>
+      <%- if false -%>
+      @book = search_params[:book]
+      @page = search_params[:page]
+      @book = "%" if @book == ""
+      @page = "%" if @page == ""
+      @results = Checklist.where("book like ? AND page like ?", @book, @page) 
+      render layout: false
+      <%- end -%>
   end
 
   def edit

@@ -6,24 +6,28 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
       name = getname
       type = gettype
       width = getwidth
-      puts "You entered: " + " " + [name, type, width].join(" ")
+      searchable = in_search
+      {:name => name, :type => type, :width => width, :searchable => searchable}
     end
     def getname
       ask("Enter the Name for the new field: ")
     end
     def gettype
-      allowedtypes = {1 => :String, 2 => :Checkbox}
+      allowedtypes = {1 => :String}
       allowedstring = ""
       allowedtypes.each_pair { |key, value| allowedstring << (key.to_s + ") " + value.to_s + "\n") }
       answer = ask("Select field type:\n#{allowedstring}").to_i
       if not allowedtypes.has_key?(answer)
-        puts "Invalid field type, please re-enter\n"
+        say("Invalid field type, please re-enter")
         answer = gettype
       end
       answer
     end
     def getwidth
       ask("Enter width (out of 16)")
+    end
+    def in_search
+      yes?("Make field searchable?")
     end
   end
   def insp
@@ -32,10 +36,17 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
     p a.inspect
     p a.class
   end
-  def copy_initializer
-    template "test.rb", "config/initializers/#{name}.rb"
-  end
+#  def copy_initializer
+#    @stuff = 123
+#    template "test.rb", "config/initializers/#{name}.rb"
+#  end
   def newlist
-    new_field
+    say("Create a new checklist", :green)
+    @list = []
+    while yes?("Enter a new field?")
+      @list << new_field
+    end
+    say(@list)
+    template "checklists_controller.rb", "config/initializers/checklists_controller.rb"
   end
 end
