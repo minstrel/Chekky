@@ -1,0 +1,33 @@
+<%%= form_for @checklist_item, remote: true do |newitem| %>
+  <div class="ui form">
+    <div class="ui pointing below basic label">Enter a new item</div>
+    <div class="fields">
+      <%- # Insert entry fields for each field %>
+      <%- @list.each do |list_item| %>
+        <div class="<%= list_item[:width].humanize %> wide field">
+          <label><%= list_item[:name] %></label>
+          <%- # Insert a text field if it's a string %>
+          <%- if list_item[:type] == 1 %>
+            <%%= newitem.text_field :<%= list_item[:name] %> %>
+          <%- end %>
+        </div>
+      <%- end %>
+      <div class="two wide field">
+        <label>Book</label>
+        <%%= newitem.text_field :book %>
+      </div>
+      <div class="two wide field">
+        <label>Page</label>
+        <%%= newitem.text_field :page %>
+      </div>
+      <div class="five wide field">
+        <label>Notes</label>
+        <%%= newitem.text_field :note %>
+      </div>
+    </div>
+    <%%= newitem.submit "Send!", { :class => "ui pink compact button" } %>
+  </div>
+  <br />
+  <div class="ui divider"></div>
+  <br />
+<%% end %>

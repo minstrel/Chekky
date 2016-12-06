@@ -7,7 +7,7 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
       type = gettype
       width = getwidth
       searchable = in_search
-      {:name => name, :type => type, :width => width, :searchable => searchable}
+      {:name => name, :type => type, :width => width.to_i, :searchable => searchable}
     end
     def getname
       ask("Enter the Name for the new field: ")
@@ -30,6 +30,7 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
       yes?("Make field searchable?")
     end
   end
+  # Methods below here gets executed in order
   def insp
     require './config/environment'
     a = Checklist.new()
@@ -43,10 +44,10 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
   def newlist
     say("Create a new checklist", :green)
     @list = []
-    while yes?("Enter a new field?")
+    while yes?("Enter a new field?", :yellow)
       @list << new_field
     end
-    say(@list)
     template "checklists_controller.rb", "config/initializers/checklists_controller.rb"
+    template "_newitem.html.erb", "config/initializers/_newitem.html.erb"
   end
 end

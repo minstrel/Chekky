@@ -27,6 +27,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'less-rails-semantic_ui'
 gem 'autoprefixer-rails'
 
+# Humanize to convert numeric input of field length to semantic-ui English words
+gem 'humanize'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
