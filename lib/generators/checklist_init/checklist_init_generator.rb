@@ -10,7 +10,7 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
       {:name => name, :type => type, :width => width.to_i, :searchable => searchable}
     end
     def getname
-      ask("Enter the Name for the new field: ")
+      ask("Enter the Name for the new field: ").downcase
     end
     def gettype
       allowedtypes = {1 => :String}

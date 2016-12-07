@@ -90,6 +90,21 @@ class ChecklistsController < ApplicationController
   end
 
   private
+  <%- # Collect the fields that the user wants searchable, as well as all the fields, and populate the search_params and post_params accordingly -%>
+  <%- search_params_permit = [] -%>
+  <%- post_params_permit = ["complete"] -%>
+  <%- @list.each do |list_item| -%>
+    <%- if list_item[:searchable] == true -%>
+      <%- search_params_permit << list_item[:name] -%>
+    <%- end -%>
+    <%- post_params_permit << list_item[:name] -%>
+  <%- end -%>
+    def search_params
+      params.permit(<%= (search_params_permit.map { |field| ":#{field}" }).join(", ") %>)
+    end
+    def post_params
+      params.require(:checklist).permit(<%= (post_params_permit.map { |field| ":#{field}" }).join(", ") %>)
+    end
   def search_params
     params.permit(:book, :page)
   end
