@@ -1,0 +1,14 @@
+$.get("/checklists/" + <%%= @checklist_item.id.to_s %> + "/edit", function(data) {
+  $("#to-do #to-do-contents").after(data);
+  <%- @list.each do |list_item| -%>
+  $("#checklist_<%= list_item[:name] %>").val("");
+  <%- end -%>
+  <%- # Original for comparison -%>
+  <%- if false -%>
+  $("#checklist_book").val("");
+  $("#checklist_page").val("");
+  $("#checklist_note").val("");
+  <%- end -%>
+  $("#checklist_<%= @list.first[:name] %>").focus();
+  }, 'html');
+
