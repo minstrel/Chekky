@@ -105,10 +105,12 @@ class ChecklistsController < ApplicationController
     def post_params
       params.require(:checklist).permit(<%= (post_params_permit.map { |field| ":#{field}" }).join(", ") %>)
     end
+  <%- if false -%>
   def search_params
     params.permit(:book, :page)
   end
   def post_params
     params.require(:checklist).permit(:book, :page, :note, :vickie, :complete)
   end
+  <%- end -%>
 end

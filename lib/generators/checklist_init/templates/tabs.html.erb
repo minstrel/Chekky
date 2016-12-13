@@ -1,0 +1,31 @@
+<div class="ui data_area grid">
+  <div class="row" id="to-do-contents">
+    <div class="one wide column"></div>
+    <%- @list.each do |list_item| -%>
+      <div class="<%= list_item[:width].humanize %> wide column"><%= list_item[:name].capitalize %></div>
+    <%- end -%>
+    <%- # Original layout for comparison -%>
+    <%- if false -%>
+    <div class="two wide column">Book</div>
+    <div class="two wide column">Page</div>
+    <div class="five wide column">Notes</div>
+    <div class="two wide column">Vickie</div>
+    <%- end -%>
+    <div class="two wide column">
+      <div class="ui labeled red compact icon button" id="refresh">
+        <i class="refresh icon"></i>
+        Refresh
+      </div>
+    </div>
+  </div>
+
+  <%%= yield %>
+
+</div>
+
+<script type="text/javascript">
+$('div #refresh').click(function() {
+  // --debug-- console.log("click triggered");
+  $('.tabular.menu .item').tab('change tab', '<%= @refresh_tab %>');
+});
+</script>
