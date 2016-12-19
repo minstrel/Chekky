@@ -51,5 +51,6 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
     template "_newitem.html.erb", "config/initializers/_newitem.html.erb"
     template "tabs.html.erb", "config/initializers/tabs.html.erb"
     template "create.js.erb", "config/initializers/create.js.erb"
+    template "edit.html.erb", "config/initializers/edit.html.erb"
   end
 end

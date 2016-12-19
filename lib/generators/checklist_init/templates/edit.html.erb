@@ -1,0 +1,37 @@
+<%% @checklist_items.each do |item| %>
+  <div class="row" data-itemid="<%%= item.id.to_s %>">
+    <div class="one wide column">
+      <i class="complete large <%%= item.checkcolor %> link icon" data-itemid="<%%= item.id.to_s %>"></i>
+    </div>
+    <%- @list.each do |list_item| -%>
+      <%- if list_item[:type] == 1 -%>
+      <div class="<%= list_item[:width].humanize %> wide column">
+        <%%= item.<%= list_item[:name] %> %>
+      </div>
+      <%- end -%>
+    <%- end -%>
+    <div class="two wide column">
+      <%%= item.book %>
+    </div>
+    <div class="two wide column">
+      <%%= item.page %>
+    </div>
+    <div class="five wide column">
+      <%%= item.note %>
+    </div>
+    <div class="two wide column">
+      <i class="vickie large <%%= item.vickie_checkcolor %> link icon" data-itemid="<%%= item.id.to_s %>"></i>
+    </div>
+    <div class="column">
+      <%%= form_for item, remote: true do |f| %>
+        <%%= f.check_box :complete, :style => "display: none;", data: { checkboxid: item.id.to_s } %>
+        <%- if false -%>
+        <%- # This only applies to checkbox fields, add it back in when I implement those -%>
+        <%%= f.check_box :vickie, :style => "display: none;", data: { vickieid: item.id.to_s } %>
+        <%- end -%>
+        <%%= f.submit "Submit test", :style => "display: none;" %>
+      <%% end %>
+    </div>
+  </div>
+<%% end %>
+
