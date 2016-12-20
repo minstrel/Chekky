@@ -10,6 +10,8 @@
       </div>
       <%- end -%>
     <%- end -%>
+    <%- if false -%>
+    <%- # Original for reference -%>
     <div class="two wide column">
       <%%= item.book %>
     </div>
@@ -22,6 +24,7 @@
     <div class="two wide column">
       <i class="vickie large <%%= item.vickie_checkcolor %> link icon" data-itemid="<%%= item.id.to_s %>"></i>
     </div>
+    <%- end -%>
     <div class="column">
       <%%= form_for item, remote: true do |f| %>
         <%%= f.check_box :complete, :style => "display: none;", data: { checkboxid: item.id.to_s } %>
