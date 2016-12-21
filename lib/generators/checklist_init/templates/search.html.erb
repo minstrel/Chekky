@@ -1,0 +1,64 @@
+<%%= form_tag(checklists_search_results_path, method: :get, remote: true, id: 'search_form') do %>
+  <div class="ui form">
+    <div class="fields">
+      <div class="one wide field">
+      </div>
+      <%- @list.each do |list_item| -%>
+        <%- if list_item[:searchable] -%>
+        <div class="<%= list_item[:width].humanize %> wide field">
+          <label><%= list_item[:name].capitalize %></label>
+        <div class="ui small input">
+          <%%= text_field_tag( :<%= list_item[:name] %>, "", :placeholder => "<%= list_item[:name].capitalize %>" ) %>
+        </div>
+        </div>
+        <%- end -%>
+      <%- end -%>
+      <%- if false %>
+      <%- # Original for comparison -%>
+      <div class="two wide field">
+        <label>Book</label>
+        <div class="ui small input">
+          <%%= text_field_tag( :book, "", :placeholder => "Book #" ) %>
+        </div>
+      </div>
+      <div class="two wide field">
+        <label>Page</label>
+        <div class="ui small input">
+          <%%= text_field_tag( :page, "", :placeholder => "Page #" ) %>
+        </div>
+      </div>
+      <%- end %>
+      <div class="two wide field">
+        <label>&nbsp;</label>
+        <%%= submit_tag( "Search", { :class => "ui violet compact button"  } ) %>
+      </div>
+    </div>
+  </div>
+<%% end %>
+  <br />
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="ui one wide column">Complete</div>
+      <%- @list.each do |list_item| -%>
+        <div class="ui <%= list_item[:width].humanize %> wide column"><%= list_item[:name].capitalize %></div>
+      <%- end -%>
+      <div class="ui two wide column">Date</div>
+      <%- if false -%>
+      <div class="ui one wide column">Complete</div>
+      <div class="ui two wide column">Book</div>
+      <div class="ui two wide column">Page</div>
+      <div class="ui five wide column">Notes</div>
+      <div class="ui two wide column">Vickie</div>
+      <div class="ui two wide column">Date</div>
+      <%- end -%>
+    </div>
+    <div class="ui divider"></div>
+  </div>
+  <div class="ui grid" id="search_results">
+  </div>
+
+<script type="text/javascript">
+$('form#search_form').on('ajax:success', function(e, data, status, xhr) {
+  $('div#search_results').html(xhr.responseText);
+});
+</script>
