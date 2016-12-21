@@ -1,0 +1,19 @@
+<%% @results.each do |r| %>
+  <div class="ui row">
+    <div class="one wide column"><i class="search_res <%%= r.checkcolor %> icon"></i></div>
+    <%- @list.each do |list_item| -%>
+      <div class="<%= list_item[:width].humanize %> wide column"><%%= r.<%= list_item[:name] %> %></div>
+    <%- end -%>
+    <div class="two wide column"><%%= r.created_at.to_date %></div>
+    <%- if false -%>
+    <%- # Original for comparison -%>
+    <div class="one wide column"><i class="search_res <%%= r.checkcolor %> icon"></i></div>
+    <div class="two wide column"><%%= r.book %></div>
+    <div class="two wide column"><%%= r.page %></div>
+    <div class="five wide column"><%%= r.note %></div>
+    <div class="two wide column"><i class="search_res <%%= r.vickie_checkcolor %> icon"></i></div>
+    <div class="two wide column"><%%= r.created_at.to_date %></div>
+    <%- end -%>
+  </div>
+<%% end %>
+
