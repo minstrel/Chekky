@@ -54,5 +54,6 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
     template "edit.html.erb", "config/initializers/edit.html.erb"
     template "search.html.erb", "config/initializers/search.html.erb"
     template "search_results.html.erb", "config/initializers/search_results.html.erb"
+    template "checklists.js.erb", "config/initializers/checklists.js"
   end
 end
