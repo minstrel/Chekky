@@ -47,14 +47,19 @@ class ChecklistInitGenerator < Rails::Generators::NamedBase
     while yes?("Enter a new field?", :yellow)
       @list << new_field
     end
+    # app/controllers
     template "checklists_controller.rb", "config/initializers/checklists_controller.rb"
-    template "_newitem.html.erb", "config/initializers/_newitem.html.erb"
+    # app/views/layouts
     template "tabs.html.erb", "config/initializers/tabs.html.erb"
+    # app/views/checklists
+    template "_newitem.html.erb", "config/initializers/_newitem.html.erb"
     template "create.js.erb", "config/initializers/create.js.erb"
     template "edit.html.erb", "config/initializers/edit.html.erb"
     template "search.html.erb", "config/initializers/search.html.erb"
     template "search_results.html.erb", "config/initializers/search_results.html.erb"
+    # app/assets/javascripts
     template "checklists.js.erb", "config/initializers/checklists.js"
+    # app/models
     template "checklist.rb", "config/initializers/checklist.rb"
   end
 end
